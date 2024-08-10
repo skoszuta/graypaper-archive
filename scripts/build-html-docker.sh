@@ -18,6 +18,4 @@ docker run --platform linux/amd64 -ti --rm \
   -w /pdf $PDF2HTMLEX_IMG \
   --zoom 1.3 graypaper-$VERSION.pdf
 
-mv ./dist/graypaper-${VERSION}.html ./public/graypaper-${VERSION}.html
-
-# TODO [ToDr] Update metadata.
+./scripts/update-metadata.sh

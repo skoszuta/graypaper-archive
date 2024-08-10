@@ -4,4 +4,4 @@ set -ex
 
 mkdir -p ./dist
 ./scripts/build-pdf-local.sh
-pdf2htmlEX ./dist/graypaper.pdf
+pdf2htmlEX ./dist/graypaper-${VERSION:-latest}.pdf

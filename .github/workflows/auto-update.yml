@@ -14,7 +14,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        # token: ${{ secrets.PAT }}
         submodules: 'true'
     - name: Check local version
       id: local_version
@@ -37,7 +36,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-        #   token: ${{ secrets.PAT }}
           submodules: 'true'
       - name: Get GitHub Actions Bot details
         id: bot_details
@@ -49,11 +47,11 @@ jobs:
           git config --global user.email '${{ steps.bot_details.outputs.email }}'
           git submodule update --remote
           scripts/build-pdf-docker.sh
-        #   VERSION=v$(cat graypaper/VERSION)
-        #   git checkout -b feature/$VERSION
-        #   git add .
-        #   git commit -m "Bumped to ${VERSION}"
-        #   git push --set-upstream origin feature/$VERSION
-        #   gh pr create -B main -H feature/$VERSION --title "Bump to ${VERSION}" --body ""
+          VERSION=v$(cat graypaper/VERSION)
+          git checkout -b feature/$VERSION
+          git add .
+          git commit -m "Bumped to ${VERSION}"
+          git push --set-upstream origin feature/$VERSION
+          gh pr create -B main -H feature/$VERSION --title "Bump to ${VERSION}" --body ""
         #   gh pr merge --merge --delete-branch
        

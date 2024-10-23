@@ -43,7 +43,7 @@ jobs:
           git config --global user.name $(gh api /users/github-actions[bot] | jq -r '.name')
           git config --global user.email $(gh api /users/github-actions[bot] | jq -r '.email')
           git submodule update --remote
-          # scripts/build-pdf-docker.sh
+          scripts/build-pdf-docker.sh
           VERSION=v$(cat graypaper/VERSION)
           git checkout -b feature/$VERSION
           git add .

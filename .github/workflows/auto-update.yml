@@ -6,6 +6,7 @@ on:
 
 jobs:
   check_for_updates:
+    name: Check for updates
     runs-on: ubuntu-latest
     outputs:
       local_version: ${{steps.local_version.outputs.VERSION}}
@@ -24,6 +25,7 @@ jobs:
         git submodule update --remote
         echo "VERSION=$(cat graypaper/VERSION)" >> "$GITHUB_OUTPUT"
   update:
+    name: Update
     runs-on: ubuntu-latest
     needs: check_for_updates
     permissions:

@@ -40,8 +40,10 @@ jobs:
       - name: Get latest graypaper and create a pull request
         id: remote_version
         run: |
-          git config --global user.name $(gh api /users/github-actions[bot] | jq -r '.name')
-          git config --global user.email $(gh api /users/github-actions[bot] | jq -r '.email')
+          BOT_NAME="github-actions[bot]"
+          BOT_EMAIL="$(gh api /users/github-actions[bot] | jq -r '.id')+$BOT_NAME@users.noreply.github.com"
+          git config --global user.name $BOT_NAME
+          git config --global user.email $BOT_EMAIL
           git submodule update --remote
           scripts/build-pdf-docker.sh
           VERSION=v$(cat graypaper/VERSION)

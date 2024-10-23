@@ -44,7 +44,7 @@ jobs:
         run: |
           git submodule update --remote
           scripts/build-pdf-docker.sh
-          echo "VERSION=v$(cat workflow-testing-two/VERSION)" >> "$GITHUB_OUTPUT"
+          echo "VERSION=v$(cat graypaper/VERSION)" >> "$GITHUB_OUTPUT"
       - name: Commit changes to the main branch
         uses: EndBug/add-and-commit@v9
         with:

@@ -37,16 +37,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: 'true'
-      - name: Get GitHub Actions Bot details
-        id: bot_details
-        uses: raven-actions/bot-details@v1
       - name: Get latest graypaper and create a pull request
         id: remote_version
         run: |
-          git config --global user.name '${{ steps.bot_details.outputs.name }}'
-          git config --global user.email '${{ steps.bot_details.outputs.email }}'
+          git config --global user.name $(gh api /users/github-actions[bot] | jq -r '.name')
+          git config --global user.email $(gh api /users/github-actions[bot] | jq -r '.email')
           git submodule update --remote
-          scripts/build-pdf-docker.sh
+          # scripts/build-pdf-docker.sh
           VERSION=v$(cat graypaper/VERSION)
           git checkout -b feature/$VERSION
           git add .

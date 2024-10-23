@@ -38,7 +38,6 @@ jobs:
         with:
           submodules: 'true'
       - name: Get latest graypaper and create a pull request
-        id: remote_version
         run: |
           BOT_NAME="github-actions[bot]"
           BOT_EMAIL="$(gh api /users/github-actions[bot] | jq -r '.id')+$BOT_NAME@users.noreply.github.com"
